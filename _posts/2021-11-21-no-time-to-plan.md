@@ -6,4 +6,4 @@ We talked over a funny story of his. Once sensei forgot about a leadership semin
 
 > Karate is a great whole-body sport. It teaches patience and humbleness. But the one quality that Karate aims to develop is to ace without a thought-out plan at hand.
 
-Looking forward to the upcoming years of practicing the art :smile:.
+Looking forward to the upcoming years of practicing the art!
