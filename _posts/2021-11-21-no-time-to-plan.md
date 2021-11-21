@@ -1,4 +1,4 @@
-The other day I had a chat with my local Karate Dojo owner. I am not exactly how it all began, but we drifted towards discussing my sensei. He is a busy bee.
+The other day I had a chat with my local Karate dojo owner. I am not exactly sure how it all began, but we drifted towards discussing my sensei. He is a busy bee.
 
 The sensei is always on the run, having many activities alongside being the master of the dojo. He delivers leadership seminars for businesses. He is also a referee, being often away abroad for competitions. He sees an opportunity, and he seizes it. It comes at a cost. Often sensei does everything at the last minute. 
 
