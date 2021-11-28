@@ -1,4 +1,4 @@
-The walrus operator, formally the assignment expressions, has been for some time around now in Python (since 3.8). I've grown fond of it :).
+The Walrus operator, formally the assignment expressions, has been for some time around now in Python (since 3.8). I've grown fond of it :).
 
 You can add more clarity to the code with it:
 
