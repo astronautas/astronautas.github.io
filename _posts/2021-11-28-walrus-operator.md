@@ -18,4 +18,4 @@ if (last_visited_at := context.get("last_visited_at")) is None:
 
 The `last_visited_at` variable should not matter after the conditional block. The example with the walrus operator signals the intent better.
 
-I haven't yet used the operator for anything fancier but as syntax sugar for better code clarity. RealPython illustrates more uses of the walrus operator e.g. [this one](https://realpython.com/python-walrus-operator/#list-comprehensions) of rewriting a double list comprehension into a single one.
+I haven't yet used the operator for anything fancier but as syntax sugar for better code clarity. RealPython illustrates more uses of the walrus operator e.g. [this one](https://realpython.com/python-walrus-operator/#list-comprehensions) of rewriting a double list comprehension into a single one!
