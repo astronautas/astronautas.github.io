@@ -6,10 +6,23 @@ layout: default
 ---
 
 <style>
+
+@media (min-width: 500px) {
 .grid-container {
     display: grid;
     grid-template-columns: 1.5fr 2fr;
     gap: 30px;
+}
+}
+
+@media (max-width: 499px) {
+.grid-container {
+    display: block;
+}
+
+.grid-item {
+    margin-bottom: 30px;
+}
 }
 
 </style>
@@ -22,7 +35,7 @@ layout: default
         <p>I build software for the entire lifecycle of machine learning. I design models, as well as work on MLOps, to deliver scalable, reliable and effective systems that learn and adapt.</p>
         <p>I currently help <a href="https://www.vinted.fr/" target="_blank">Vinted</a> recommend the most relevant second-hand clothing to millions of users. In the past, 
         I designed <a href="https://neurotechnology.com/" target="_blank">autonomous mobile robots</a>.</p>
-        <p>I am a Traditional Karate-do practitioner as well, and too much of a history nerd.</p>
-        <p>I reside in Vilnius, Lithuania, at the moment.</p>
+        <!-- <p>Read the full CV here.</p> -->
+        <p>In my spare time, practice <a href="2021/11/21/no-time-to-plan.html" target="_blank">Traditional Karate-do</a>. I am a history nerd, an aspiring home chef and an amateur traveller (follow my adventures <a href="https://www.instagram.com/lukasvalatka/" target="_blank">here</a>). I reside in Vilnius, Lithuania at the moment.</p>
     </div>
 </div>
