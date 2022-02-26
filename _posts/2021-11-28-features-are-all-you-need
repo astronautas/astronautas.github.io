@@ -1,0 +1,30 @@
+We have been building ranking systems at Vinted for a couple of years now. If there is one thing we've learned, it's that you should focus on **feature engineering**. It is the most predictable way of improvement.
+
+How come? 
+
+1. Not much to do about the model.
+2. Collaboration with domain experts and engineers (bias cheat).
+3. Encoding temporal information is easier vs. modeling is hard (modeling cheat).
+
+## Modeling - XGBoost brr...
+
+## Collaboration with domain experts
+![img](/assets/9e28b7b1-25dd-409c-959a-9befaa64ac30.png)
+
+We would collaborate closely with our PO and analyst 
+
+## Easier to encode temporal information
+Think of it this way. Encoding with RNN would be not only hard, but it would forget the information, transformers are out of the game due to too long sequences.
+
+Choosing a model is easy. If you work with ranking systems, you likely work with tabular data. For tabular data modeling, ensembles of trees is a no-brainer (either RandomForests or Gradient Boosting) can approximate any non-linear function. Since ranking is data hungry, with proper regularisation tree ensembles beat any other models, even Neural Nets (link into recsys). Beyond regularization, you can tinker as much as you want with the model, but the gains will be marginal.
+
+Tree-based models have little bias. They can approximate any non-linear functions.
+
+Since tree-based models can approximate anything, feeding them more and more about the context during user's interaction with the target will make your ranker better and better. Focus on temporal feature engineering.
+
+Feature engineering unlocks collaboration between domain experts and engineers:
+
+
+The downside is that they're cumbersome to work with unstructured data
+
+I am a bit doubtful this extends beyond tabular data e.g. into computer vision or NLP, where you work with unstructured data and feature engineering is hard, and it's a thing of a past.
