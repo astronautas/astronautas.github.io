@@ -32,7 +32,7 @@ layout: default
     <div class="grid-item two">
         <h1>👋 Welcome!</h1>
         <p>My name is Lukas Valatka. I am a software engineer. I build adaptive systems with machine learning to support businesses and improve user experience in most dynamic settings.</p>
-        <p>I currently develop recommender systems for search at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>, to enable a personalized second-hand clothing shopping experience to millions of users. In the past, 
+        <p>I currently develop recommender systems at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>, to enable a personalized second-hand clothing shopping experience to millions of users. In the past, 
         I built autonomous mobile  <a href="https://arxiv.org/abs/1910.06658" target="_blank">robots powered by deep neural networks</a>.</p>
         <!-- <p>Read the full CV here.</p> -->
         <p>In my spare time, I practice <a href="2021/11/21/no-time-to-plan.html" target="_blank">Traditional Karate-do</a>.</p>
