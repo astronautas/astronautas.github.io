@@ -22,7 +22,7 @@ layout: default
         <p>I build software for the entire lifecycle of machine learning. I design models, as well as work on MLOps, to deliver scalable, reliable and effective systems that learn and adapt.</p>
         <p>I currently help <a href="https://www.vinted.fr/" target="_blank">Vinted</a> recommend the most relevant second-hand clothing to millions of users. In the past, 
         I designed <a href="https://neurotechnology.com/" target="_blank">autonomous mobile robots</a>.</p>
-        <p>I am a Traditional Karate-do practitioner and too much of a history nerd.</p>
+        <p>I am a Traditional Karate-do practitioner as well, and too much of a history nerd.</p>
         <p>I reside in Vilnius, Lithuania, at the moment.</p>
     </div>
 </div>
