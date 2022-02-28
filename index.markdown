@@ -33,7 +33,7 @@ layout: default
         <h1>👋 Welcome!</h1>
         <p>My name is Lukas Valatka. I am a machine learning engineer.</p>
         
-        <p>For the past few years, I have been developing recommender systems at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>. Here I co-created many critical systems that enable real-time personalization, such as our first in-house feature store.
+        <p>For the past few years, I have worked on recommendations at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>. At Vinted, I co-created many critical systems that enable real-time personalization, such as our first in-house feature store.
         Before this, I trained <a href="https://arxiv.org/abs/1910.06658" target="_blank">deep neural networks</a> for autonomous mobile robots. I have a degree in Computer Science (Software Engineering).</p>
 
         <p>In my spare time, I practice <a href="2021/11/21/no-time-to-plan.html" target="_blank">Traditional Karate-do</a>. I reside in my lovely hometown Vilnius, Lithuania.</p>
