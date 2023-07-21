@@ -13,7 +13,7 @@ permalink: /projects/
             Your Hacker News
           </a>
         </h3>
-        At the time, I stay on top of ML news, and Hacker News seemed like a good source... 
+        At the time, I wanted to stay on top of ML news, and Hacker News seemed like a good source... 
         <a href="https://hn.algolia.com/">
             Algolia's HN search
         </a> would skip quite some ML-related posts though. Since it does some form of full-text search, so titles with keywords such as "NLP" would never get matched against queries such as "machine learning", and wouldn't be that precise e.g. articles about learning in general would be retrieved at the top. I was also learning Go-lang at the time, so I toyed around and composed a lightweight semantic similarity-based search using HuggingFace APIs and Hacker News APIs. For multiple topics of your interests, it retrieves highest scoring 24h posts, based on a combination of upvotes and similarity score of the query and a post title. It leverages MailJet, to manage subscriptions. Overall, a fun little new language learning project!
