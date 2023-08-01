@@ -1,6 +1,6 @@
-Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning projects. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts or costs.
+Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning projects. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts and costs.
 
-Let's explore the typical offerings of feature stores and see which ones can be substituted with a data warehouse table (and some additional tooling around it):
+Let's explore the typical offerings of feature stores and see which ones can be substituted with a familiar data warehouse tables and some additional data tooling around them.
 
 * Eliminating duplication in feature pipelines between training and serving stages
   * Table
