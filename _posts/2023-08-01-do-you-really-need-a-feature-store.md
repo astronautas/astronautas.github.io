@@ -2,7 +2,7 @@ Recently a data platform vendor introduced us to their latest offering: a featur
 
 Let's explore the typical offerings of feature stores and see which ones can be substituted with a familiar data warehouse tables and some additional data tooling around them.
 
-* Eliminating duplication in feature pipelines between training and serving stages
+* Single train-serve pipeline
   * Table
   * Feature store
 * Backfilling
