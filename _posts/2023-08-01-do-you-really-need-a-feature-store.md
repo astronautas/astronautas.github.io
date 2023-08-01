@@ -1,15 +1,14 @@
-Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning models. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts or costs.
+Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning projects. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts or costs.
 
 Let's explore the typical offerings of feature stores and see which ones can be substituted with a data warehouse table (and some additional tooling around it):
 
 * Eliminating duplication in feature pipelines between training and serving stages
   * Table
   * Feature store
-* Feature documentation
+* Backfilling
   * Table
   * Feature store
-
-* Backfilling
+* Feature documentation
   * Table
   * Feature store
 * Real-time access
@@ -34,7 +33,7 @@ WHERE date = MAX(SELECT date FROM clicks) and user_id = 123 and brand_id = 456
 
 same dataset, same SQL transformation, shave off the latest data point (day) for inference. For training, you will get data points for all existing days and keys. No need for a feature store here.
 
-###  Backfill
+###  Backfilling
 
 Backfilling involves recomputing feature values for all available time slices in the past, not just for newly arrived data, in datasets with time dimensions. This process becomes crucial during early experimentation phases, allowing for feature rewriting to enhance accuracy and fix bugs. Many feature stores provide this essential functionality.
 
@@ -43,7 +42,7 @@ You can easily support backfilling with e.g. DBT as a data transformation tool -
 1. Always recompute, which proves effective for small tables, or
 2. Define an incremental table that allows for a full refresh when needed.
 
-### Feature docs
+### Feature documentation
 
 To be fair, a typical warehouse table documentation tooling tackles this well. [DBT docs](https://docs.getdbt.com/reference/commands/cmd-docs) allow to serve web-based docs for tables and table columns and much more. Registering an ML feature is as simple as adding a new DBT model.
 
@@ -53,6 +52,6 @@ The DWH table as a feature store might not work for real-time access. Most data 
 
 At my current place, [Otrium](https://www.otrium.com/men/home), we opted for managing ML features within our data jobs, since either way all ML models run as batch jobs. At [Vinted](https://www.vinted.fr/) a couple of years, we had to use a feature store for recommendation systems to meet high lookup demands in real time. Using Redis enabled efficient querying, effectively serving as a real-time access layer for data warehouse values, though pipelines still resided within our data jobs - so had it not been for the real-time access requirements, we would have just added a lightweight API on the data platform for ML services to consume features.
 
-### Some parting words
+### Parting words
 
 The decision to adopt a feature store should be carefully evaluated, considering the specific needs and scale of your machine learning projects. A data warehouse table can suffice for many cases, while a feature store might be essential mostly only for scenarios requiring real-time feature access.
