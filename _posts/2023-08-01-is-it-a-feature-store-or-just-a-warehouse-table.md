@@ -1,6 +1,11 @@
+---
+layout: post
+title: A Feature Store, or Just a Warehouse Table?
+---
 Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning projects. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts and costs.
 
-Let's explore the typical offerings of feature stores and see which ones can be substituted with a familiar data warehouse tables and some additional data tooling around them.
+## A table is all you need...
+Let's explore the typical offerings of feature stores and see which ones can be substituted with data warehouse tables and some additional familiar data tooling around them:
 
 * Single train-serve pipeline
   * Table
@@ -14,7 +19,7 @@ Let's explore the typical offerings of feature stores and see which ones can be 
 * Real-time access
   * Feature store
 
-I will argue that a data warehouse (DWH) table should be sufficient for most cases, except when real-time feature access is required, which can help save costs when considering off-the-shelf solutions or time when exploring open-source options like [Feast](https://github.com/feast-dev/feast).
+I will argue that a data warehouse (DWH) table should be sufficient for most cases, except when real-time feature access is required. Such decision can help save costs when considering pretty expensive off-the-shelf solutions or time when exploring open-source options like [Feast](https://github.com/feast-dev/feast).
 
 ### Single train-serve pipeline
 
@@ -50,8 +55,9 @@ To be fair, a typical warehouse table documentation tooling tackles this well. [
 
 The DWH table as a feature store might not work for real-time access. Most data warehouses have analytical databases at their core. At inference, you mostly perform feature lookups for entities by keys, which either relational databases (via B-tree / hash indexes) or NoSQL key-value stores (hash indexes) are optimized for. Analytical databases may not perform as well, as they need to retrieve rows composed of keys and values that are not collocated together on disk or in memory.
 
+## Personal experience
 At my current place, [Otrium](https://www.otrium.com/men/home), we opted for managing ML features within our data jobs, since either way all ML models run as batch jobs. At [Vinted](https://www.vinted.fr/) a couple of years, we had to use a feature store for recommendation systems to meet high lookup demands in real time. Using Redis enabled efficient querying, effectively serving as a real-time access layer for data warehouse values, though pipelines still resided within our data jobs - so had it not been for the real-time access requirements, we would have just added a lightweight API on the data platform for ML services to consume features.
 
-### Parting words
+## Parting words
 
 The decision to adopt a feature store should be carefully evaluated, considering the specific needs and scale of your machine learning projects. A data warehouse table can suffice for many cases, while a feature store might be essential mostly only for scenarios requiring real-time feature access.
