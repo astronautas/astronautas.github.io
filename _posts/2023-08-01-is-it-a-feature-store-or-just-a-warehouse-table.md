@@ -19,7 +19,7 @@ Let's explore the typical offerings of feature stores and see which ones can be 
 * Real-time access
   * Feature store
 
-I will argue that a data warehouse (DWH) table should be sufficient for most cases, except when real-time feature access is required. Such decision can help save costs when considering pretty expensive off-the-shelf solutions or time when exploring open-source options like [Feast](https://github.com/feast-dev/feast).
+I will argue that a data warehouse (DWH) table should be sufficient for most cases, except when real-time feature access is required. Such a decision can help save costs when considering pretty expensive off-the-shelf solutions or time when exploring open-source options like [Feast](https://github.com/feast-dev/feast).
 
 ### Unified train-serve feature engineering pipelines
 
@@ -47,7 +47,7 @@ You can easily support backfilling with e.g. DBT as a data transformation tool -
 1. Always recompute, which proves effective for small tables, or
 2. Define an incremental table that allows for a full refresh when needed.
 
-From my memory, the issue might lie in the fact that backfilling is an expensive operation at least for certain dataset sizes, and you might need to write some nasty optimised SQL to actually make it performant, which some feature stores like Tecton have already figured out.
+From my memory, the issue might lie in the fact that backfilling is an expensive operation at least for certain dataset sizes, and you might need to write some nasty optimised SQL to make it performant, which some feature stores like Tecton have already figured out.
 
 ### Feature documentation
 
