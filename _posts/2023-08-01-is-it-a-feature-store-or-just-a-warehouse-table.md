@@ -7,7 +7,7 @@ Recently a data platform vendor introduced us to their latest offering: a featur
 ## A table is all you need...
 Let's explore the typical offerings of feature stores and see which ones can be substituted with data warehouse tables and some additional familiar data tooling around them:
 
-* Single train-serve pipeline
+* Unified train-serve feature engineering pipelines
   * Table
   * Feature store
 * Backfilling
@@ -21,9 +21,9 @@ Let's explore the typical offerings of feature stores and see which ones can be 
 
 I will argue that a data warehouse (DWH) table should be sufficient for most cases, except when real-time feature access is required. Such decision can help save costs when considering pretty expensive off-the-shelf solutions or time when exploring open-source options like [Feast](https://github.com/feast-dev/feast).
 
-### Single train-serve pipeline
+### Unified train-serve feature engineering pipelines
 
-You don't want duplicate train-serving pipelines, since this will introduce skew (drift), which reduces your model's serving accuracy. A table partitioned by period e.g. a day would work just fine:
+You don't want duplicate train-serving feature engineering pipelines, since this will introduce skew (drift), which reduces your model's serving accuracy. A table partitioned by period e.g. a day would work just fine:
 
 ```sql
 # Training
