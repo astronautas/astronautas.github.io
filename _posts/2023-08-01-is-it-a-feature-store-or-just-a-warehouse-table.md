@@ -23,7 +23,7 @@ I will argue that a data warehouse (DWH) table should be sufficient for most cas
 
 ### Single train-serve pipeline
 
-A standard argument - you don't want duplicate train-serving pipelines, since this might introduce skew, which reduces your model's accuracy. A table partitioned by period e.g. a day would work just fine:
+You don't want duplicate train-serving pipelines, since this will introduce skew (drift), which reduces your model's serving accuracy. A table partitioned by period e.g. a day would work just fine:
 
 ```sql
 # Training
@@ -33,19 +33,21 @@ FROM daily_brand_clicks
 # Inference
 SELECT *
 FROM daily_brand_clicks
-WHERE date = MAX(SELECT date FROM clicks) and user_id = 123 and brand_id = 456
+WHERE date = MAX(SELECT date FROM daily_brand_clicks) and user_id = 123 and brand_id = 456
 ```
 
 same dataset, same SQL transformation, shave off the latest data point (day) for inference. For training, you will get data points for all existing days and keys. No need for a feature store here.
 
 ###  Backfilling
 
-Backfilling involves recomputing feature values for all available time slices in the past, not just for newly arrived data, in datasets with time dimensions. This process becomes crucial during early experimentation phases, allowing for feature rewriting to enhance accuracy and fix bugs. Many feature stores provide this essential functionality.
+Backfilling involves recomputing feature values for all available time slices in the past, not just for newly arrived data, in datasets with time dimensions. This process becomes crucial during early experimentation phases, allowing for feature rewriting. Many feature stores provide this essential functionality.
 
 You can easily support backfilling with e.g. DBT as a data transformation tool - since the term isn't unique to feature stores, it comes from the data engineering world:
 
 1. Always recompute, which proves effective for small tables, or
 2. Define an incremental table that allows for a full refresh when needed.
+
+From my memory, the issue might lie in the fact that backfilling is an expensive operation at least for certain dataset sizes, and you might need to write some nasty optimised SQL to actually make it performant, which some feature stores like Tecton have already figured out.
 
 ### Feature documentation
 
