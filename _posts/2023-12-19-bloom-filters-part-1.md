@@ -111,7 +111,7 @@ struct BloomFilter {
 }
 ```
 
-Our filter relies on bit-backed buckets, a departure from hash sets using an array for buckets (since again we do not store keys). We use bits to indicate whether a bucket holds an element. The 8-bit limit in the code above simplifies the initial implementation, addressing challenges in directly manipulating bits on most architectures. Constructing a bitset from smaller memory units is a significant hassle.
+Our filter relies on bit-backed buckets, a departure from hash sets using an array for buckets (since keys are not persisted). We use bits to indicate whether a bucket holds an element. The 8-bit limit in the code above simplifies the initial implementation, addressing challenges in directly manipulating bits on most architectures. Constructing a bitset from smaller memory units is a significant hassle.
 
 Also, if you zoom in on the `insert` and `get` methods, you will notice that to get/set individual bits, we need to perform bit shift operations. This is because, once again, the smallest memory unit is a byte, and we cannot address individual bits directly.
 
@@ -129,7 +129,7 @@ fn main() {
 
 If you run the code above, you will likely get `true` and `false`. If you change values, you might notice that quite often the filter says a value exists, whereas we never actually added it. To address this, in the next chapter, we will attempt to reduce the false-positive rate by manipulating the Bloom filter's size (`m`) and introducing additional hash functions to increase the uniformity of the value set (`k`).
 
-Feel free to experiment with the implementation in the workspace below. Full source is available as a <a href="https://github.com/astronautas/bloom-filter-rs">public repository</a>.
+Feel free to experiment with the implementation in the workspace below.
 
 <iframe
     width="100%"
@@ -138,3 +138,4 @@ Feel free to experiment with the implementation in the workspace below. Full sou
     frameborder="0"
     allowfullscreen
 ></iframe>
+Full source is available as <a href="https://github.com/astronautas/bloom-filter-rs">on Github</a>. Join the discussion on HackerNews.
