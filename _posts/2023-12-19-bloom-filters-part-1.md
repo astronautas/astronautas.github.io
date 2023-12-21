@@ -138,4 +138,4 @@ Feel free to experiment with the implementation in the workspace below.
     frameborder="0"
     allowfullscreen
 ></iframe>
-Full source is available as <a href="https://github.com/astronautas/bloom-filter-rs">on Github</a>. Join the discussion on <a href="https://news.ycombinator.com/item?id=38722075">Hacker News</a>.
+Full source is available on <a href="https://github.com/astronautas/bloom-filter-rs">Github</a>. Join the discussion on <a href="https://news.ycombinator.com/item?id=38722075">Hacker News</a>.
