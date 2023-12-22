@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Let's build a Bloom filter. Part 1
+title: Let's build a Bloom filter. Part 1 - A Space-Efficient Hash Set
 ---
 I have always been intrigued by Bloom filters. They are very similar to hash sets but somehow much more space-efficient. Sometimes, they can yield false positives, creating a peculiar tradeoff.
 
