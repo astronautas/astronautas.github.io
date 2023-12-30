@@ -39,7 +39,7 @@ layout: default
         </p>
         
         <p>From 2019 to 2022, I was at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>. I have built
-        the first version of home screen recommendations, search ranking and a milisecond-latency feature store - some of the initial components still operate up to this day. These implementations marked a significant achievement in key metrics, firmly establishing machine learning-powered ranking and recommendations as a standalone data product within Vinted. Most of my muscle had been built there.</p>
+        the first version of home screen recommendations, search ranking and a milisecond-latency feature store - some of the components still operate up to this day. These implementations marked a significant achievement in key metrics, firmly establishing machine learning-powered ranking and recommendations as a standalone data product within Vinted. Most of my muscle had been built there.</p>
         
         <p>Before this, I trained <a href="https://arxiv.org/abs/1910.06658" target="_blank">deep neural networks</a> for autonomous mobile robots, and even built some JAVA backends (Spring boot, anyone?)... I have a degree in Computer Science (Software Engineering).</p>
 
