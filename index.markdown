@@ -22,14 +22,17 @@ layout: default
 
 .grid-item {
     margin-bottom: 30px;
+    text-align: justify;
 }
 }
 
 </style>
 
-<div class="grid-container">
-    <div class="grid-item two">
-        <h1>Hi, I am Lukas Valatka</h1>
+<div class="grid-containers">
+    <h1>Hi, I am Lukas Valatka</h1>
+    <img class="grid-item one" src="/assets/IMG_0762.jpeg" style="width: 33%; float: right; margin-left: 60px; margin-bottom: 30px;" />
+
+    <div class="grid-item two" style="text-align: justify;">
         <p>I live in Leuven, Belgium and I am a Software Engineer. I currently help <a href="https://dataroots.io/">Dataroots</a> - a Belgian scale-up within data and A.I. - with MLOps.</p>
 
         <p>In 2023, I joined  <a href="https://www.otrium.nl/">Otrium</a>, a Dutch start-up in the online fashion outlet marketplace, to create the dynamic pricing engine. Beyond development, I influenced the pricing team's engineering culture, promoting iterative development through A/B testing. I also reduced manual labor by leading a multi-team project to seamlessly integrate pricing model updates into our internal inventory management system.
@@ -46,6 +49,4 @@ layout: default
 
         <!-- <p>Read the full CV here.</p> -->
     </div>
-
-    <img class="grid-item one" src="/assets/IMG_0762.jpeg" />
 </div>
