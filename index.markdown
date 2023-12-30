@@ -33,13 +33,12 @@ layout: default
     <img class="grid-item one" src="/assets/IMG_0762.jpeg" style="width: 33%; float: right; margin-left: 60px; margin-bottom: 30px;" />
 
     <div class="grid-item two" style="text-align: justify;">
-        <p>I live in Leuven, Belgium and I am a Software Engineer. I currently help <a href="https://dataroots.io/">Dataroots</a> - a Belgian scale-up within data and A.I. - with MLOps.</p>
+        <p>I am Software Engineer, and I currently live in Leuven, Belgium. At the moment, I help <a href="https://dataroots.io/">Dataroots</a> - a Belgian data scale-up - build ML Platforms.</p>
 
-        <p>In 2023, I joined  <a href="https://www.otrium.nl/">Otrium</a>, a Dutch start-up in the online fashion outlet marketplace, to create the dynamic pricing engine. Beyond development, I influenced the pricing team's engineering culture, promoting iterative development through A/B testing. I also reduced manual labor by leading a multi-team project to seamlessly integrate pricing model updates into our internal inventory management system.
-        </p>
-        
+        <p>Before Dataroots, in 2023, I worked for  <a href="https://www.otrium.nl/">Otrium</a>, a Dutch start-up in the online fashion outlet marketplace. At Otrium, I enhanced a dynamic pricing engine using machine learning, notably improving offline validation to better align with online metrics. Alongside, I ensured we could actually measure our feature impact online - by implementing A/B testing tooling and setting best-practices. I draw focus on automations, freeing up our tiny team time for product improvements, by designing and developing automatic, reliable pricing model output integrations with internal systems.</p>
+
         <p>From 2019 to 2022, I was at <a href="https://www.vinted.fr/" target="_blank">Vinted</a>. I have built
-        the first version of home screen recommendations, search ranking and a milisecond-latency feature store - some of the components still operate up to this day. These implementations marked a significant achievement in key metrics, firmly establishing machine learning-powered ranking and recommendations as a standalone data product within Vinted. Most of my muscle had been built there.</p>
+        the first version of home screen recommendations, search ranking and a milisecond-latency feature store - some of the components still operate up to this day. These implementations resulted in double-digit improvements in business metrics, firmly establishing machine learning-powered ranking and recommendations as a standalone data product within Vinted. Most of my muscle had been built there.</p>
         
         <p>Before this, I trained <a href="https://arxiv.org/abs/1910.06658" target="_blank">deep neural networks</a> for autonomous mobile robots, and even built some JAVA backends (Spring boot, anyone?)... I have a degree in Computer Science (Software Engineering).</p>
 
