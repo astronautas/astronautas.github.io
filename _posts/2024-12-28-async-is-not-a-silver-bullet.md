@@ -98,7 +98,7 @@ async def prepare_feature_batch(preprocessing: bool = False, fraction_of_io: flo
 
 ![img](/assets/results-3.json.png)
 
-The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for - and the **GIL limits execution to just one thread at a time**, even if the event loop runs tasks across the entire pool of threads. As a result, the async implementation with CPU work becomes nearly serial (see the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization is possible.
+The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for. `async-io` implementations execute async code within a single thread, and on on top of that, GIL cripples any attempts at multi-threaded execution - something like Tokio or Deno easily have. As a result, the async implementation with CPU work becomes nearly serial (see the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization happens.
 
 In the Go implementation, we can see that the runtime nicely distributes the work across 8 cores, at least up until 8 tasks, and then it scales much more slowly than in Python. This demonstrates proper parallelization.
 ## 4. Existing Python paralelization techniques
