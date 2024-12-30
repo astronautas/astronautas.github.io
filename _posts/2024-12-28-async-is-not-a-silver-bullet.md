@@ -2,11 +2,14 @@
 layout: post
 title: Async I/O Is Not Enough
 ---
-For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule cheap concurrent operations — simply by adding `go` in front of a function call — and, with a tiny footprint, achieve true parallelism across cores.
+For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — simply by adding `go` in front of a function call — and, and achieve true parallelism across cores.
 
-But let's be honest, we all use Python at work. As convenient as `async await` constructs and event loops like `asyncio` are for concurrency, they still pose an issue for web applications where a) **latency is critical**. Horizontal scaling does not optimise single request duration, and when you have b) ever **growing amount of Python processing code** scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
+But let's be honest, we all use Python at work. As convenient as `async await` constructs and event loops like `asyncio` are for concurrency,
 
-These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Eventually, we hit a scalability wall due to our well-known friend, the GIL.
+`asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations (like DB calls for clients). However, unlike Go, they still pose an issue for web applications. When:  a) **latency is critical** — horizontal scaling does not optimize single request duration, and  
+b) there is an ever-growing amount of **Python processing code** scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles can increase drastically.
+
+These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? Well, we hit the scalability wall due to our well-known friend, the GIL.
 
 I will illustrate with examples below how the issue eventually creeps in and how recent advances in No-GIL are highly promising in addressing it.
 
