@@ -4,7 +4,7 @@ title: Async-I/O Is Not a Silver Bullet
 ---
 I would like to share my thoughts on why Python No-GIL is very promising, at least for a certain set of use-cases.
 
-For the past few months, I’ve been exploring Go. Having done some wizardry on shaving-off ms from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — by simply adding `go` in front of a function call — and with a tiny footprint achieve true parallelism across cores. But let's be honest, we all use Python at work, and as convenient as `asyncio` and similar packages are for concurrency, they still pose an issue for web applications where:
+For the past few months, I’ve been exploring Go. Having done some grueling work shaving-off ms from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — by simply adding `go` in front of a function call — and with a tiny footprint achieve true parallelism across cores. But let's be honest, we all use Python at work, and as convenient as `asyncio` and similar packages are for concurrency, they still pose an issue for web applications where:
 
 - **Low latency is critical:** Reducing total duration (e.g., via horizontal scaling) no longer helps; we need to optimize single-request duration.
 - **Native extensions aren't viable:** The application involves scattered Python expressions that must remain in Python for maintainability.
@@ -17,7 +17,6 @@ We'll walk through a toy benchmark for an ML model-serving application. It retri
 Our initial application fetches features from 1 to 32 sources. We're starting with a fully I/O bounded implementation. Assume the application does not perform any post-processing, so no meaningful CPU work for now.
 
 ```python
-
 def prepare_feature_batch_serial(preprocessing: bool = False, fraction_of_io: float = 0.0):
 	features = requests.get(f"https://httpbin.org/delay/1").json()
 
@@ -36,7 +35,7 @@ Both implementations above suffer from blocking I/O. Let's see how we can allevi
 
 When an application issues a web request, it typically waits for a response before scheduling subsequent ones (e.g., 1, 5, 10... 30). Instead, we can perform non-blocking I/O, allowing the application to do other work while waiting—such as issuing additional requests.
 
-In Python, this is achieved by scheduling functions as tasks within an event loop, commonly using the `asyncio` package and `async/await` constructs. In Go, however, this functionality is baked directly into the runtime—simple and efficient - just adding `go` in front of a function call.
+In Python, this is achieved by scheduling functions as tasks within an event loop, commonly using the `asyncio` package and `async/await` constructs. In Go this functionality is baked directly into the runtime.
 
 ```python
 async def get_feature_batch():
@@ -68,6 +67,34 @@ Again, Go is a bit faster, since it's a compiled language, but that's negligible
 ## 3. What if it is not just I/O, but I/O + CPU?
 
 As mentioned earlier, our application performs CPU-intensive work for each web call — either postprocessing or preprocessing. We shall assume that the CPU work accounts for half of the total duration of a single web request within a task.
+
+```python
+def preprocess_feature_batch(iterations: int):
+
+	'''
+	This is a fake CPU operation that is used to simulate a CPU-intensive operation.
+	Some realistic potential cases:
+	'''
+
+	def fake_cpu_op(iterations: int):
+		result = 0.0
+		noise = random.random()
+	
+		for i in range(iterations):
+			result += (12345.6789 * noise ) ** 0.5 # Perform a CPU-intensive operation
+
+	fake_cpu_op(iterations)
+
+async def prepare_feature_batch(preprocessing: bool = False, fraction_of_io: float = 0.0):
+
+	features = await get_feature_batch()
+
+	if preprocessing and fraction_of_io > 0.0:
+		loop = asyncio.get_event_loop()
+		# 15_000_000 ~= 2.3s on MCB Pro M1
+		# a good practice to use run_in_executor to run CPU-bound non-async tasks to not block the event loop
+		await loop.run_in_executor(None, preprocess_feature_batch, int(fraction_of_io * 15_000_000 / 0.8 * 2))
+```
 
 ![img](/assets/results-3.json.png)
 
@@ -115,3 +142,5 @@ Why not use async? Unfortunately, `asyncio` and other event loops implementation
 Wow! We get similar performance as with multiprocessing, without the tradeoffs. Unfortunately, we had to go back to lower-level threading constructs. As far as I know, there are no production-ready multithreaded event loop implementations yet. [One very cool experimental project](https://github.com/NeilBotelho/turboAsync) already exists, do check it out.  
 
 I remain optimistic about Python’s future and hopeful that it will eventually catch up with Go. In forums, I’ve noticed significant concern about handling thread-safety in our applications (it’s not about CPython itself). However, **as long as your application is stateless, No-GIL offers a massive opportunity without immediate drawbacks**.
+
+[Source on Github](https://github.com/astronautas/async-io-is-not-enough)
