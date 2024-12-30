@@ -1,17 +1,16 @@
 ---
 layout: post
-title: Async-I/O Is Not a Silver Bullet
+title: Async I/O Is Not Enough
 ---
-I would like to share my thoughts on why Python No-GIL is very promising, at least for a certain set of use-cases.
+For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule cheap concurrent operations — simply by adding `go` in front of a function call — and, with a tiny footprint, achieve true parallelism across cores.
 
-For the past few months, I’ve been exploring Go. Having done some grueling work shaving-off ms from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — by simply adding `go` in front of a function call — and with a tiny footprint achieve true parallelism across cores. But let's be honest, we all use Python at work, and as convenient as `asyncio` and similar packages are for concurrency, they still pose an issue for web applications where:
+But let's be honest, we all use Python at work. As convenient as `asyncio` and similar packages are for concurrency, they still pose an issue for web applications where latency is critical. Horizontal scaling does not optimize single request duration, and when you have ever growing amount of Python processing code scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
 
-- **Low latency is critical:** Reducing total duration (e.g., via horizontal scaling) no longer helps; we need to optimize single-request duration.
-- **Native extensions aren't viable:** The application involves scattered Python expressions that must remain in Python for maintainability.
+These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Eventually, we hit a scalability wall due to our well-known friend, the GIL.
 
-In this context, Go shines, whereas `asyncio` is not a panacea, and we eventually hit a wall due to our well-known pal, the GIL. I will illustrate with examples below how the issue materialises.
+I will illustrate with examples below how the issue eventually creeps in and how recent advances in No-GIL are highly promising in addressing it.
 
-We'll walk through a toy benchmark for an ML model-serving application. It retrieves features from various sources (e.g. a feature store) and performs some post-processing. We skip inference for simplicity.
+We'll walk through a toy benchmark for an ML model-serving application. It retrieves features from various sources (e.g., a feature store) and performs some post-processing. We skip inference for simplicity.
 ## 1. Serial
 
 Our initial application fetches features from 1 to 32 sources. We're starting with a fully I/O bounded implementation. Assume the application does not perform any post-processing, so no meaningful CPU work for now.
