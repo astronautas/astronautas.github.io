@@ -4,7 +4,7 @@ title: Async I/O Is Not Enough
 ---
 For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule cheap concurrent operations — simply by adding `go` in front of a function call — and, with a tiny footprint, achieve true parallelism across cores.
 
-But let's be honest, we all use Python at work. As convenient as `async await` constructs and event loops like `asyncio` are for concurrency, they still pose an issue for web applications where latency is critical. Horizontal scaling does not optimise single request duration, and when you have ever growing amount of Python processing code scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
+But let's be honest, we all use Python at work. As convenient as `async await` constructs and event loops like `asyncio` are for concurrency, they still pose an issue for web applications where a) **latency is critical**. Horizontal scaling does not optimise single request duration, and when you have b) ever **growing amount of Python processing code** scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
 
 These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Eventually, we hit a scalability wall due to our well-known friend, the GIL.
 
