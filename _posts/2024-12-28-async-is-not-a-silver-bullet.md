@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Async-IO is not a silver bullet
+title: Async-IO Is Not a Silver Bullet
 ---
 I would like to share my thoughts on why Python No-GIL is very promising, at least for a certain set of use-cases.
 
