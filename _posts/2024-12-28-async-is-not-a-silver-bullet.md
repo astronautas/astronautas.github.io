@@ -4,7 +4,7 @@ title: Async I/O Is Not Enough
 ---
 For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule cheap concurrent operations — simply by adding `go` in front of a function call — and, with a tiny footprint, achieve true parallelism across cores.
 
-But let's be honest, we all use Python at work. As convenient as `asyncio` and similar packages are for concurrency, they still pose an issue for web applications where latency is critical. Horizontal scaling does not optimize single request duration, and when you have ever growing amount of Python processing code scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
+But let's be honest, we all use Python at work. As convenient as `async await` constructs and event loops like `asyncio` are for concurrency, they still pose an issue for web applications where latency is critical. Horizontal scaling does not optimise single request duration, and when you have ever growing amount of Python processing code scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles will increase drastically.
 
 These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Eventually, we hit a scalability wall due to our well-known friend, the GIL.
 
@@ -97,7 +97,7 @@ async def prepare_feature_batch(preprocessing: bool = False, fraction_of_io: flo
 
 ![img](/assets/results-3.json.png)
 
-The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for - and since event loops in Python run on threads, the GIL limits parallel execution to just one thread at a time. As a result, the async implementation with CPU work becomes nearly serial (see the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization is possible.
+The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for - and the **GIL limits execution to just one thread at a time**, even if the event loop runs tasks across the entire pool of threads. As a result, the async implementation with CPU work becomes nearly serial (see the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization is possible.
 
 In the Go implementation, we can see that the runtime nicely distributes the work across 8 cores, at least up until 8 tasks, and then it scales much more slowly than in Python. This demonstrates proper parallelization.
 ## 4. Existing Python paralelization techniques
