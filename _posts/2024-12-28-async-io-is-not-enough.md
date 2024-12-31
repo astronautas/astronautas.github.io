@@ -57,7 +57,8 @@ def perform_async(num_feature_batches: int, fraction_of_io: float):
 
 
 ![img](/assets/results-2.json.png)
-<center>_Yellow and orange flat-lines represent Go-routine and Python-async implementations._</center>
+<div align="center" style="font-style: italic;">
+Yellow and orange flat-lines represent Go-routine and Python-async implementations.</div>
 
 Both concurrent implementations scale significantly better, which is great. The trend is nearly flat because I/O operations are external, incurring minimal CPU work on the machine. This essentially means you can scale almost infinitely.
 
@@ -97,7 +98,8 @@ async def prepare_feature_batch(preprocessing: bool = False, fraction_of_io: flo
 ```
 
 ![img](/assets/results-3.json.png)
-<center>_Adding CPU work, Python-async - purple line - starts to perform worse than Go - brown line_</center>
+<div align="center" style="font-style: italic;">
+Adding CPU work, Python-async - purple line - starts to perform worse than Go - brown line</div>
 
 The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for. `async-io` implementations execute async code within a single thread, and on on top of that, GIL cripples any attempts at multi-threaded execution - something like Tokio or Deno can easily achieve. As a result, the async implementation with CPU work becomes nearly serial (observe the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization happens.
 
@@ -117,7 +119,10 @@ def perform_multiprocessing(num_feature_batches: int, fraction_of_io: float):
 ```
 
 ![img](/assets/results-4.json.png)
-<center>_Python multiprocessing - pink line - scales ~like Go._</center>
+
+<div align="center" style="font-style: italic;">
+Python multiprocessing - pink line - scales ~like Go.
+</div>
 
 As we can see above, multiprocessing gets the job done and is as fast as its Go counterpart. Unfortunately, as mentioned earlier, multiprocessing has significant drawbacks. Specifically, inter-process communication relies on pickling, which is expensive for large objects. Additionally, it uses copy-on-write, which can only be avoided with certain tricks, such as ensuring the code references a data wrapper to avoid modifying the data's reference counter. 
 
@@ -140,7 +145,9 @@ def perform_threaded(num_feature_batches: int, fraction_of_io: float):
 Why not use async? Unfortunately, `asyncio` and other event loops implementations do not yet support multi-threading mode.
 
 ![img](/assets/results-5.json.png)
-<center>_No-GIL, the pink line, seems to scale very flatly.</center>
+<div align="center" style="font-style: italic;">
+No-GIL, the pink line, seems to scale very flatly.
+</div>
 
 Wow! We get similar performance as with multiprocessing, without the tradeoffs. Unfortunately, we had to go back to lower-level threading constructs. As far as I know, there are no production-ready multithreaded event loop implementations yet. [One very cool experimental project](https://github.com/NeilBotelho/turboAsync) already exists, do check it out.  
 
