@@ -34,7 +34,7 @@ Both implementations above suffer from blocking I/O. Let's see how we can allevi
 
 When an application issues a web request, it typically waits for a response before scheduling subsequent ones (e.g., 1, 5, 10... 30). Instead, we can perform non-blocking I/O, allowing the application to do other work while waiting—such as issuing additional requests.
 
-In Python, this is achieved by scheduling functions as tasks within an event loop, commonly using the `asyncio` package and `async/await` constructs. In Go this functionality is baked directly into the runtime.
+In Python, this is achieved by scheduling functions as tasks within an event loop, commonly using the `asyncio` concurrent executor or any similar e.g. uvloop, anyio, FastAPI using anyio under the hood, and `async/await` constructs to denote asynchronous functions. In Go this functionality is baked directly into the runtime.
 
 ```python
 async def get_feature_batch():
