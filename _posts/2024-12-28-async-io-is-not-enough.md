@@ -2,12 +2,12 @@
 layout: post
 title: Async I/O Is Not Enough
 ---
-For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — simply by adding `go` in front of a function call — and, and achieve true parallelism across cores.
+For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — simply by adding `go` in front of a function call — and achieve true parallelism across cores.
 
 Python's `asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations (like DB calls for clients). However, unlike Go, they still pose an issue for web applications. When:  a) **latency is critical** — horizontal scaling does not optimize single request duration, and  
 b) there is an ever-growing amount of **Python processing code** scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles can increase drastically.
 
-These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? Well, we hit the scalability wall due to our well-known friend, the GIL.
+These specific constraints do not occur frequently for CRUD apps, but they are quite common for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? Well, we hit the scalability wall due to our well-known friend, **the GIL**.
 
 I will illustrate with examples below how the issue eventually creeps in and how recent advances in No-GIL are highly promising in addressing it.
 
@@ -26,6 +26,7 @@ def perform_serial(num_feature_batches: int, fraction_of_io: float):
 ```
 
 ![img](/assets/results-1.json.png)
+
 
 As expected, since our implementations are not concurrent, the total duration increases linearly, sharply. Go is a bit faster, but insignificantly.
 
@@ -57,6 +58,7 @@ def perform_async(num_feature_batches: int, fraction_of_io: float):
 
 
 ![img](/assets/results-2.json.png)
+<center>_Yellow and orange flat-lines represent Go-routine and Python-async implementations._</center>
 
 Both concurrent implementations scale significantly better, which is great. The trend is nearly flat because I/O operations are external, incurring minimal CPU work on the machine. This essentially means you can scale almost infinitely.
 
@@ -73,7 +75,6 @@ def preprocess_feature_batch(iterations: int):
 
 	'''
 	This is a fake CPU operation that is used to simulate a CPU-intensive operation.
-	Some realistic potential cases:
 	'''
 
 	def fake_cpu_op(iterations: int):
@@ -91,14 +92,15 @@ async def prepare_feature_batch(preprocessing: bool = False, fraction_of_io: flo
 
 	if preprocessing and fraction_of_io > 0.0:
 		loop = asyncio.get_event_loop()
-		# 15_000_000 ~= 2.3s on MCB Pro M1
+		# 15_000_000 / 0.8 ~= 1s on MCB Pro M1
 		# a good practice to use run_in_executor to run CPU-bound non-async tasks to not block the event loop
 		await loop.run_in_executor(None, preprocess_feature_batch, int(fraction_of_io * 15_000_000 / 0.8 * 2))
 ```
 
 ![img](/assets/results-3.json.png)
+<center>_Adding CPU work, Python-async - purple line - starts to perform worse than Go - brown line_</center>
 
-The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for. `async-io` implementations execute async code within a single thread, and on on top of that, GIL cripples any attempts at multi-threaded execution - something like Tokio or Deno easily have. As a result, the async implementation with CPU work becomes nearly serial (see the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization happens.
+The situation easily becomes problematic for Python's async implementation. Unlike I/O, CPU work must be handled by the machine itself - it's not external work performed by some remote DB after all we are patiently waiting for. `async-io` implementations execute async code within a single thread, and on on top of that, GIL cripples any attempts at multi-threaded execution - something like Tokio or Deno can easily achieve. As a result, the async implementation with CPU work becomes nearly serial (observe the purple line approaching the green one) quite overshadowing I/O concurrency gains — no true parallelization happens.
 
 In the Go implementation, we can see that the runtime nicely distributes the work across 8 cores, at least up until 8 tasks, and then it scales much more slowly than in Python. This demonstrates proper parallelization.
 ## 4. Existing Python paralelization techniques
@@ -116,6 +118,7 @@ def perform_multiprocessing(num_feature_batches: int, fraction_of_io: float):
 ```
 
 ![img](/assets/results-4.json.png)
+<center>_Python multiprocessing - pink line - scales ~like Go._</center>
 
 As we can see above, multiprocessing gets the job done and is as fast as its Go counterpart. Unfortunately, as mentioned earlier, multiprocessing has significant drawbacks. Specifically, inter-process communication relies on pickling, which is expensive for large objects. Additionally, it uses copy-on-write, which can only be avoided with certain tricks, such as ensuring the code references a data wrapper to avoid modifying the data's reference counter. 
 
@@ -138,9 +141,12 @@ def perform_threaded(num_feature_batches: int, fraction_of_io: float):
 Why not use async? Unfortunately, `asyncio` and other event loops implementations do not yet support multi-threading mode.
 
 ![img](/assets/results-5.json.png)
+<center>_No-GIL, the pink line, seems to scale very flatly.</center>
 
 Wow! We get similar performance as with multiprocessing, without the tradeoffs. Unfortunately, we had to go back to lower-level threading constructs. As far as I know, there are no production-ready multithreaded event loop implementations yet. [One very cool experimental project](https://github.com/NeilBotelho/turboAsync) already exists, do check it out.  
 
-I remain optimistic about Python’s future and hopeful that it will eventually catch up with Go. In forums, I’ve noticed significant concern about handling thread-safety in our applications (it’s not about CPython itself). However, **as long as your application is stateless, No-GIL offers a massive opportunity without immediate drawbacks**.
+I remain optimistic about Python’s future. I believe No-GIL is a breakthrough for latency-sensitive apps where you still want to stay Pythonic. This is often the case for data science applications.
+
+And, as always, never forget to benchmark.
 
 [Source on Github](https://github.com/astronautas/async-io-is-not-enough)
