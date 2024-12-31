@@ -6,7 +6,7 @@ For the past few months, I’ve been exploring Go. Having done quite a bit of gr
 
 Python's `asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations (like DB calls for clients). However, unlike Go, they still pose an issue for web applications. When:  a) **latency is critical** — horizontal scaling does not optimize single request duration, and  b) there is an ever-growing amount of **Python processing code** scattered across the application, it becomes hard to offload it to native extensions, yet CPU cycles can increase drastically.
 
-For CRUD apps, these constraints are somewhat less relevant, but they are quite typical for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? Concurrency != parallelism. Single-threading by design itself. And thanks to our dear friend, **the GIL**.
+For CRUD apps, these constraints are somewhat less relevant, but they are quite typical for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? [Concurrency != parallelism.](https://go.dev/blog/waza-talk). Single-threading by design itself. And thanks to our dear friend, **the GIL**.
 
 I will illustrate with examples below how the issue eventually creeps in and how recent advances in No-GIL are highly promising in addressing it.
 
