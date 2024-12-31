@@ -23,7 +23,6 @@ def perform_serial(num_feature_batches: int, fraction_of_io: float):
 	for _ in range(num_feature_batches):
 		prepare_feature_batch_serial(preprocessing=True, fraction_of_io=fraction_of_io)
 ```
-
 ![img](/assets/results-1.json.png)
 
 
@@ -133,6 +132,8 @@ It’s a massive pain.
 ## 5. No-GIL!
 
 There is a Python free-threading version, 3.13t, which is not yet production-ready, but we can already experiment with it to see if we can achieve any gains with pure threading.
+
+`PYTHON_GIL=0 uv run --with python 3.13t <...>
 
 ```python
 def perform_threaded(num_feature_batches: int, fraction_of_io: float):
