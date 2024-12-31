@@ -125,7 +125,10 @@ Python multiprocessing - pink line - scales ~like Go.
 </div>
 <br />
 
-As we can see above, multiprocessing gets the job done and is as fast as its Go counterpart. Unfortunately, as mentioned earlier, multiprocessing has significant drawbacks. Specifically, inter-process communication relies on pickling, which is expensive for large objects. Additionally, it uses copy-on-write, which can only be avoided with certain tricks, such as ensuring the code references a data wrapper to avoid modifying the data's reference counter. 
+As we can see above, multiprocessing gets the job done and is as fast as its Go counterpart. Unfortunately, as mentioned earlier, multiprocessing has significant drawbacks:
+* Inter-process communication relies on pickling, which is expensive for large objects.
+* Copy-on-write, which can only be avoided with wizard-level tricks, such as ensuring the code references a data wrapper to avoid modifying the data's reference counter. 
+- Spinning up processes is costly, and context switching worsens with more processes than cores, limiting you to a CPU-count pre-initialized pool (you have to manage it) and making many connection APIs is essentially unscalable.
 
 It’s a massive pain.
 
