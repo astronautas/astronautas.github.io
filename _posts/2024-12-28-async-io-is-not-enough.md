@@ -26,7 +26,7 @@ def perform_serial(num_feature_batches: int, fraction_of_io: float):
 ![img](/assets/results-1.json.png)
 
 
-As expected, since our implementations are not concurrent, the total duration increases linearly, sharply. Go is a bit faster, but insignificantly.
+As expected, since our implementations are not concurrent, the total duration increases linearly, sharply. Go is a bit faster, but insignificantly.<sup>1</sup>
 
 Both implementations above suffer from blocking I/O. Let's see how we can alleviate this, both in Go (natively) and in Python (`asyncio`).
 
@@ -63,7 +63,7 @@ Both concurrent implementations scale significantly better, which is great. The 
 
 Under the hood, Go uses preemptive scheduling, where the event loop spends a maximum amount of time on each goroutine before switching to another, making it effectively [non-blocking](https://stackoverflow.com/questions/73915144/why-is-go-considered-partially-preemptive). In contrast, Python's `async-io` is cooperative, meaning we return the control back to the event loop, while itself it goes to execute (potentially) another async function. Both implementations achieve non-blocking I/O.
 
-Again, Go is a bit faster, since it's a compiled language, but that's negligible.
+Again, Go is a bit faster, since it's a compiled language.<sup>1</sup>
 
 ## 3. What if it is not just I/O, but I/O + CPU?
 
@@ -163,3 +163,6 @@ I remain optimistic about Python’s future. I believe No-GIL is a breakthrough 
 And, as always, never forget to benchmark.
 
 [Source on Github](https://github.com/astronautas/async-io-is-not-enough)
+
+Footnotes:
+* <sup>1</sup> Quite by accident, I noticed that I throttled Go implementation for IO+CPU experiments. I made sure Go spends exactly the same amount of time on CPU operation as Python, whereas made Go perform many more iterations compared to Python. Multiple times I concluded Go is just a bit faster than Python, whereas it actually is astronomically faster :D. But that does not change my main point that without GIL, no matter how much you split your CPU-bound work, you will not see any gains. Will adjust the post.
