@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UV has a killer feature you should know about
+title: Uv has a killer feature you should know about
 ---
 
 In my view, neither performance nor trying to be Python-aligned is what sets [uv](https://github.com/astral-sh/uv) apart. Don’t get me wrong — try switching from uv to Poetry, and you’ll quickly notice how sluggish it (poetry) feels. uv goes extra miles to adhere to PEPs, and IMHO it's the go-to package manager for Python these days. But these aren’t the features that surprised me most.
@@ -33,4 +33,4 @@ With uv, it's just 1 command:
 uv run --python 3.12 --with pandas python
 ```
 
-easy to remember, and no trace left behind. Enjoy scripting!
+easy to remember, and no trace left behind. Happy scripting!
