@@ -3,7 +3,7 @@ layout: post
 title: On One Killer uv Feature
 ---
 
-In my view, neither performance nor strict adherence to Python standards sets [uv](https://github.com/astral-sh/uv) apart. Don’t get me wrong — try switching from uv to Poetry, and you’ll quickly notice how sluggish it (poetry) feels. uv's interface is intuitive as well, and IMHO it's the go-to package manager for Python these days. But these aren’t the features that surprised me most.
+In my view, neither performance nor trying to stick to PEP sets [uv](https://github.com/astral-sh/uv) apart. Don’t get me wrong — try switching from uv to Poetry, and you’ll quickly notice how sluggish it (poetry) feels. uv's design decisions are familiarly Pythonic as well, and IMHO it's the go-to package manager for Python these days. But these aren’t the features that surprised me most.
 
 There’s one small feature I initially overlooked that truly makes uv intriguing:
 
