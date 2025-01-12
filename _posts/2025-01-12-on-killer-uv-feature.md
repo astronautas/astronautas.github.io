@@ -7,7 +7,7 @@ In my view, neither performance nor strict adherence to Python standards sets uv
 
 There’s one small feature I initially overlooked that truly makes uv intriguing:
 
-Imagine doing some ad-hoc scripting in Python 3.12. You run python, and you're in the REPL, ready to go. But what if you need to pull in a dependency, like Pandas? Here’s where it gets interesting. With most workflows, you’d either:
+Imagine doing some ad-hoc scripting in Python 3.12. You run python, and you're in the REPL, ready to go. But what if you need to pull in a dependency, like Pandas? Here’s where it gets interesting. You would either:
 
 1. Run `pip install pandas`, potentially modifying your global environment, or
 2. Take the proper route:
