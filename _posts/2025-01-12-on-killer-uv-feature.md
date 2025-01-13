@@ -14,8 +14,8 @@ You would either:
 1. Run `pip install pandas`, potentially modifying your global environment, or
 2. Take the proper route:
     * Create a virtual environment
-    * pip install pandas
     * Activate the virtual environment
+    * pip install pandas
     * Run python
 
 This gets even more interesting if you need some other Python version than your global one. You would then use something like `pyenv`, install the version and set that version as local.
