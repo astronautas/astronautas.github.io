@@ -34,3 +34,8 @@ uv run --python 3.12 --with pandas python
 ```
 
 easy to remember, and no trace left behind. Happy scripting!
+
+------
+<br />
+
+Discussion on [Hacker News](https://news.ycombinator.com/item?id=42676432).
