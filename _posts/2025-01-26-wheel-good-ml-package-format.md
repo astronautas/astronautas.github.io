@@ -89,7 +89,7 @@ A `/data` folder should appear within `src/model`, containing the trained model.
 Register the model:
 
 ```bash
-$ uv build
+$ uv build # this step should be part of a training pipeline
 $ mkdir ../registry/model
 $ mv dist/* ../registry/model
 ```
