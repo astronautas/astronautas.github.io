@@ -2,7 +2,7 @@
 layout: post
 title: Wheel - a surprisingly good model package format
 ---
-I'll give it a few years until MLflow dominates the model package format space, with alternatives like SageMaker models fading away, and sharing pure weights becoming an arcane art. But until that dominance is absolute, I’ve been thinking that there’s another quite obvious way to package models: **just store them as wheels**.
+I'll give it a few years until MLflow dominates the model package format space, with alternatives like SageMaker models fading away, and sharing pure weights becoming an arcane art. But until that dominance is absolute, I’ve been thinking that there’s another quite obvious way to package models: **just store them as wheels**. Packaging == persisting the trained model.
 
 Let's create a project to train a model:
 
