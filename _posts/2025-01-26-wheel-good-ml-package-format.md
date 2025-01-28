@@ -155,7 +155,7 @@ $ uv run --python 3.8 --with model==0.1.0 --index-url http://127.0.0.1:8000 --ex
 
 So, how does this all compare to the all mighty mlflow model format:
 
-* With mlflow, you need to explicitly list model dependencies in your serving-app OR have some script automating this (pull in model, uv add deps). It's not a native functionality.
+* With MLflow, you need to explicitly list model dependencies in your serving-app OR have some script automating this (pull in model, uv add deps). It's not a native functionality.
 * How do you make sure Python version is compatible between training and serving? Need to manually check this.
 
 Just a thought experiment. I still believe mlflow is the go-to format due its [flavors](https://mlflow.org/docs/latest/traditional-ml/creating-custom-pyfunc/part1-named-flavors.html), and storing large files within your Nexus will make SREs frown big time.
