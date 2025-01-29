@@ -158,4 +158,6 @@ So, how does this all compare to the all mighty mlflow model format:
 * With MLflow, you need to explicitly list model dependencies in your serving-app OR have some script automating this (pull in model, uv add deps). It's not a native functionality.
 * How do you make sure Python version is compatible between training and serving? Need to manually check this.
 
-Just a thought experiment. I still believe mlflow is the go-to format due its [flavors](https://mlflow.org/docs/latest/traditional-ml/creating-custom-pyfunc/part1-named-flavors.html), and storing large files within your Nexus will make SREs frown big time. But who knows, maybe in the future mlflow might just consider disguising models as standard Python packages, achieving both framework-flexibility via its flavors and interoperability with the Python ecosystem.
+Just a thought experiment. I still believe MLflow is the go-to format due to its flavors, and storing large files within your Nexus will make SREs frown big time.
+
+But who knows? Maybe in the future, MLflow might just consider disguising models as standard Python packages—achieving both framework flexibility via its flavors and interoperability with the Python ecosystem.
