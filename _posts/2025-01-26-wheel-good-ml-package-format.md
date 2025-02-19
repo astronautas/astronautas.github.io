@@ -161,3 +161,5 @@ So, how does this all compare to the all mighty mlflow model format:
 Just a thought experiment. I still believe MLflow is the go-to format due to its flavors, and storing large files within your Nexus will make SREs frown big time.
 
 But who knows? Maybe in the future, MLflow might just consider disguising models as standard Python packages—achieving both framework flexibility via its flavors and interoperability with the Python ecosystem.
+
+EDIT 2025-02-19 - it appears [Simon Willison himself put an LLM in package](https://simonwillison.net/2025/Feb/7/pip-install-llm-smollm2/). Same way, pip install the package+model and run with uvx. So maybe the wheel format is not that of a bad idea after all? 🤔 Kudos to my colleague [Lode](https://www.linkedin.com/in/lodenachtergaele/) for sharing this.
