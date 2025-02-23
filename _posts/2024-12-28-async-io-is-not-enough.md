@@ -4,9 +4,9 @@ title: Async I/O Is Not Enough
 ---
 For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — simply by adding `go` in front of a function call — and achieve true parallelism across cores.
 
-Python's `asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations (like DB calls for clients). However, unlike Go, they still pose an issue for web applications. When:  a) **latency is critical** — horizontal scaling does not optimize single request duration, and  b) there is an ever-growing amount of **Python processing code** scattered across the application, native extensions would be an overkill.
+Python's `asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations - like database calls or web requests. However, when the objective is to make single-request latency as low as possible (think scaling user-facing algorithms under APIs), coupled with an increasing amount of Python processing code (an application turning CPU-bound), this might become an issue - unlike for Go, though that will not be my main point.
 
-For CRUD apps, these constraints are somewhat less relevant, but they are quite typical for data science applications. Go shines in these scenarios, whereas `asyncio` is not a panacea. Why? [Concurrency != parallelism](https://go.dev/blog/waza-talk). Single-threading by design itself. And thanks to our dear friend, **the GIL**.
+For typical CRUD apps, these constraints are less relevant, but they are quite typical for data science applications. `asyncio` is not a panacea. Why? [Concurrency != parallelism](https://go.dev/blog/waza-talk). Single-threading by design itself. And thanks to our dear friend, **the GIL**.
 
 I will illustrate with examples below how the issue eventually creeps in and how recent advances in No-GIL are highly promising in addressing it.
 
