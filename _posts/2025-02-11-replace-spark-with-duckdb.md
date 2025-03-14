@@ -234,8 +234,6 @@ We use `sqlglot` to transpile between dialects, but unfortunately Polars SQL is 
 
 ## Next Step – Databricks
 
-I hope you’re at least intrigued by the idea of optimizing query costs without changing analysts' SQL workflow by automatically selecting the best engine for each query. Right now, this approach only works locally. It's not that useful. 
-
-Next, I’ll extend it to Databricks and test cost savings in a more realistic production setting with a proper Spark cluster, simulating more complex queries, and cursing over likely authentication issues. Improving the engine choice heuristic itself is a bigger challenge, but I might explore that too.
+Hope you at least go intrigued by the idea that it's possible to balance the benefits of single and  cluster type query engines without changing analyst workflows. Next, when I have time, I'll extend this to Databricks and test cost savings in a more realistic production setting - think Spark cluster, Delta tables in S3, annoying authentication issues, etc.
 
 Stay tuned!
