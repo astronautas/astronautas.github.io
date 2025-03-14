@@ -40,7 +40,7 @@ spark.read.parquet("data/hits.parquet") \
 
 that’s all it takes to expose a Unity Catalog table backed by a Delta table (files) to other query engines!
 
-3) Pull-in `frugal-engine`, 
+3) Pull-in [frugal-engine](https://github.com/astronautas/frugal-engine):
 
 ```bash
 $ pip install git+https://github.com/astronautas/frugal-engine
