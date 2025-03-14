@@ -11,7 +11,7 @@ I was intrigued, but not really convinced, yet.
 
 Next day after the event, I dove into the idea that the query engine should be automatically selected based on the query itself. Having some scars from hefty BigQuery bills, I built a SQL executor that switched between DuckDB and BigQuery. The challenge though was that I couldn’t use the same query with both engines due to the **lack of shared catalog** support.
 
-Fast forward a year, and we now have **Unity Catalog support for DuckDB and Polars** — yes, the same catalog well supported by distributed engines like Spark and platforms like Databricks.
+Fast forward a year, and we now have **Unity Catalog support for DuckDB and Polars** — yes, the same catalog well supported by distributed engines like Spark and platforms like Databricks. Since we only care about read-only access, I think we can go pretty far with this.
 
 I quickly threw together a prototype — let's see it in action:
 
