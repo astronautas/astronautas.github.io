@@ -95,9 +95,7 @@ Identical SQL, totally different engines! Convenient-ish to use - check. What ab
 
 ## Quantifying the cost savings
 
-We can’t draw firm conclusions on costs yet, as proper testing with a Spark cluster, Delta access from S3, and hybrid scenarios is needed—it's a complex evaluation.
-
-That said, I ran some [local benchmarks](https://github.com/ClickHouse/ClickBench/blob/main/spark/queries.sql) to gauge query time savings. For 5 million rows, the hybrid engine took ~10 a forcefully cluster executor took ~52 seconds.
+We can’t draw firm conclusions on costs yet, as proper testing with a Spark cluster, Delta access from S3, load full Clickbench dataset - it's a complex evaluation. I'll tackle this in the next chapter.
 
 With usability and (some) cost aspects explored, let's examine what makes the package tick.
 
