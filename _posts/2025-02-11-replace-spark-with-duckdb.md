@@ -234,6 +234,6 @@ We use `sqlglot` to transpile between dialects, but unfortunately Polars SQL is 
 
 ## Next Step – Databricks
 
-Hope you at least go intrigued by the idea that it's possible to balance the benefits of single and  cluster type query engines without changing analyst workflows. Next, when I have time, I'll extend this to Databricks and test cost savings in a more realistic production setting - think Spark cluster, Delta tables in S3, annoying authentication issues, etc.
+Hope you at least got intrigued by the idea that it's possible to balance the benefits of single and  cluster type query engines without changing analyst workflows. Next, when I have time, I'll extend this to Databricks and test cost savings in a more realistic production setting - think Spark cluster, Delta tables in S3, annoying authentication issues, etc.
 
 Stay tuned!
