@@ -7,7 +7,7 @@ I was attending a DuckDB meetup in Leuven, where a presenter was detailing how t
 
 I was intrigued, but not really convinced, yet.
 
-## We need both. Catalog is the bridge
+## Catalog is the bridge
 
 Next day after the event, I dove into the idea that the query engine should be automatically selected based on the query itself. Having some scars from hefty BigQuery bills, I built a SQL executor that switched between DuckDB and BigQuery. The challenge though was that I couldn’t use the same query with both engines due to the **lack of shared catalog** support.
 
