@@ -37,7 +37,7 @@ layout: default
         I’m a software engineer focused on building production machine learning systems — think efficient deployment stacks, high-throughput feature pipelines, low-latency serving and monitoring — commonly known as MLOps. This involves non-trivial amount of data engineering, backend development, and some data science, primarily using Python, Go, and cloud stacks.
 
         <br /><br />
-        I love good beer (thanks, Belgium), cycling (gravel lately), and lately, I’ve been getting more into endurance competitions.
+        I love good beer (thanks, Belgium), cycling (gravel most of time), and lately, I’ve been getting more into endurance competitions.
         </p>
 
         <h2>Through the years</h2>
