@@ -40,7 +40,7 @@ layout: default
         I love good beer (thanks, Belgium), cycling (gravel most of time), and lately, I’ve been getting more into endurance competitions.
         </p>
 
-        <h2>The Road So Far</h2>
+        <h2>My Engineering Journey</h2>
 
         <p>I grew up in vibrant Vilnius, Lithuania — thrilled to see more people now associate my beloved city with startups and fintech — where I earned a degree in Computer Science. I kickstarted my career in large-scale enterprise application development with Java. As a student job, it was more than I could’ve asked for: surrounded by senior engineers and working on a >100k LOC project. To this day, I carry the battle scars of writing genuinely useful tests, even with realistic infrastructure. Around 2017, as machine learning started gaining traction, my curiosity was sparked to explore new directions.</p>
 
