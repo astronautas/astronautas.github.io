@@ -8,28 +8,52 @@ layout: default
 <style>
 
 @media (min-width: 500px) {
-.grid-container {
-    display: grid;
-    grid-template-columns: 2fr 1.2fr;
-    gap: 30px;
-}
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        gap: 30px;
+    }
+
+    #logo {
+        width: 33%; 
+        float: right; 
+        margin-left: 60px; 
+        margin-bottom: 30px;
+    }
 }
 
-@media (max-width: 499px) {
-.grid-container {
-    display: block;
-}
+@media (max-width: 700px) {
+    .grid-container {
+        display: block;
+    }
 
-.grid-item {
-    margin-bottom: 30px;
-}
+    .grid-item {
+        margin-bottom: 30px;
+    }
+
+    #logo {
+        width: 100%;
+        height: auto;
+        margin-top: 30px;
+        margin-left: 0;
+        margin-bottom: 30px;
+    }
+
+    #logo-img {
+        width: 60%;
+        height: auto;
+        margin-bottom: 0px;
+    }
 }
 
 </style>
 
 <div class="grid-containers">
-    <h1>Hi, I am Lukas</h1>
-    <img class="grid-item one" src="/assets/IMG_0762.jpeg" style="width: 33%; float: right; margin-left: 60px; margin-bottom: 30px;" />
+    <h1>Hi, I am Lukas 👋</h1>
+
+    <div id="logo">
+        <center><img class="grid-item one" id="logo-img" src="/assets/IMG_0762.jpeg" /></center>
+    </div>
 
     <div class="grid-item two">
         <p>
