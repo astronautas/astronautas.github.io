@@ -35,8 +35,9 @@ layout: default
     <div class="grid-item two" style="text-align: justify;">
         <p>
         I’m a software engineer. I have 6+ years of experience building production machine learning systems — think efficient model deployment stacks, high-throughput feature pipelines, low-latency model serving and monitoring — commonly known as MLOps. This involves non-trivial amount of data engineering, backend development, and some data science, primarily using Python, Go, and cloud stacks.
+        </p>
 
-        <br /><br />
+        <p>
         I love good beer (thanks, Belgium), cycling (gravel most of time), and lately, I’ve been getting more into endurance competitions (recently did 21k, thinking of trail...).
         </p>
 
