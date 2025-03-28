@@ -38,7 +38,7 @@ layout: default
         </p>
 
         <p>
-        I love good beer (thanks, Belgium), cycling (gravel most of time), and lately, I’ve been getting more into endurance competitions (recently did 21k, thinking of trail...).
+        I love good beer (thanks, Belgium), cycling (gravel most of time), and lately, I’ve been getting more into endurance competitions.
         </p>
 
         <h2>My Engineering Journey So Far</h2>
