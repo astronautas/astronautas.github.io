@@ -22,7 +22,6 @@ layout: default
 
 .grid-item {
     margin-bottom: 30px;
-    text-align: justify;
 }
 }
 
@@ -32,7 +31,7 @@ layout: default
     <h1>Hi, I am Lukas</h1>
     <img class="grid-item one" src="/assets/IMG_0762.jpeg" style="width: 33%; float: right; margin-left: 60px; margin-bottom: 30px;" />
 
-    <div class="grid-item two" style="text-align: justify;">
+    <div class="grid-item two">
         <p>
         I’m a software engineer. I have 6+ years of experience building production machine learning systems — think efficient model deployment stacks, high-throughput feature pipelines, low-latency model serving and monitoring — commonly known as MLOps. This involves non-trivial amount of data engineering, backend development, and some data science, primarily using Python, Go, and cloud stacks.
         </p>
