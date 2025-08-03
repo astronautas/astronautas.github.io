@@ -76,6 +76,13 @@ def image_contents(image_bytes):
 caption = image_contents(image_bytes)["description"]
 ```
 
+Zooming in:
+```python
+@kuberun(requirements=["torch", "transformers", "pillow"], cpu=32, mem="64Gi")
+def you_func(arg):
+    ...
+```
+
 Under the hood, it builds a rather standard templated Docker image and generates a just enough Kubernetes Pod spec. The image is pushed to the configured registry, and the spec is applied to the cluster (within a default namespace, configurable though). Arguments and results are pickled — like in Ray or Python’s `multiprocessing`— and exchanged through a shared volume with a sidecar container.
 
 Builds are very slow, and I haven’t figured out support for annotations or environment variables yet (without manual spec writing, which defeats the purpose). Still, the concept gives me energy, so give it a try—and share your feedback via an [issue](https://github.com/astronautas/run_on_k8s/issues)! 
