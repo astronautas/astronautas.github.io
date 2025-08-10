@@ -2,7 +2,7 @@
 layout: post
 title: Run Python functions on K8s
 ---
-I respect Kubernetes. In the last five years I've run majority of my production ML workflows on K8s. Your app lands on a best-fit node, kept alive, horizontally (auto)scaled, load-balanced — heck, you even get the fancy stuff like custom controllers to select the best-fit node (one of many fascinating areas I can contribute to at [cast.ai](https://cast.ai/)).
+I respect Kubernetes. In the last five years I've run majority of my production ML workflows on K8s. Your app auto-lands on a node with enough resources, kept alive, horizontally (auto)scaled, load-balanced — heck, you even get the fancy stuff like custom controllers to select the cheapest pod placement (one of many fascinating areas I can contribute to at [cast.ai](https://cast.ai/)).
 
 That said, for offline experimentation — think notebooks, ad-hoc scripts — I rarely see people using K8s. Data scientists spend most of their time in experimentation phase! When you suddenly need half a terabyte of RAM or a GPU or two, you'd often skip K8s — doable, but still a mental shift - write a Dockerfile, build an image, push it to a registry, and create a deployment spec. Additional effort! You crave interactivity when experimenting, and K8s's strictly start-end jobs don't offer that experience. Instead, we turn to always-alive managed notebooks, serverless SDKs (like SageMaker), or large VMs. The tradeoffs are significant — forgotten VMs burning cash, every serverless millisecond costing times the regular compute. Even the remote IDEs are a downgrade compared to a local development environment.
 
