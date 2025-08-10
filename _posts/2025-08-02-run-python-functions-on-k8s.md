@@ -2,48 +2,24 @@
 layout: post
 title: Run Python functions on K8s
 ---
-I respect Kubernetes. In the last five years I've run majority of my production ML workflows on K8s. Your app auto-lands on a node with enough resources, kept alive, horizontally (auto)scaled, load-balanced — heck, you even get the fancy stuff like custom controllers to select the cheapest pod placement (one of many fascinating areas I can contribute to at [cast.ai](https://cast.ai/)).
+I love Kubernetes — for production, it’s rock-solid. 
 
-That said, for offline experimentation — think notebooks, ad-hoc scripts — I rarely see people using K8s. Let's take data scientists. Data scientists spend most of their time in experimentation phase! When you suddenly need half a terabyte of RAM or a GPU or two, you'd often skip K8s — doable, but still a mental shift - write a Dockerfile, build an image, push it to a registry, and create a deployment spec. Additional effort! You crave interactivity when experimenting, and K8s's strictly start-end jobs don't offer that experience. Instead, we turn to constantly-up managed notebooks, serverless SDKs (like SageMaker), or large VMs. The tradeoffs are significant — forgotten VMs burning cash, every serverless millisecond costing times the regular compute. Also, remote IDEs are a downgrade compared to a local development environment - lagging vscode forks or some custom nonsense.
+But throw me a notebook that needs 0.5 TB of RAM and a GPU, and suddenly K8s feels like a chore. Here’s what that usually means:
 
-To illustrate this, let's say you have a function that uses a pre-trained image captioning model, to generate descriptions. 
+1. Write a Dockerfile.
+2. Build the image.
+3. Push it to a registry.
+4. Write a deployment spec.
+5. Deploy it to the cluster.
+6. Set up secrets and environment variables.
+7. Wait for the pod to start.
+8. Port forward to Jupyter within the pod.
+9. Finally, run the notebook.
 
-```python
-def image_contents(image_bytes):
-    from transformers import pipeline
-    from PIL import Image
-    import io
-    import torch
+This gets even more interesting if you forget to shutdown the pod. 24 * 10 USD / h = **240 USD / day**, down the drain 🤦.
 
-    # Load and convert the image bytes to PIL
-    image = Image.open(io.BytesIO(image_bytes))
-    if image.mode != "RGB":
-        image = image.convert("RGB")
-
-    # Choose a captioning model—e.g. BLIP or ViT‑GPT2
-    captioner = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
-    # Alternatively: model="nlpconnect/vit-gpt2-image-captioning"
-
-    # Run the pipeline
-    outputs = captioner(image)
-
-    # outputs is a list of dicts like [{'generated_text': "..."}]
-    caption = outputs[0]["generated_text"]
-
-    return {"description": caption}
-
-
-...
-
-caption = image_contents(image_bytes)["description"]
-```
-
-If you suddenly need a much beefier machine for your function, you have to either restructure your project — build a Docker image, write a spec - make sure the secrets are on the cluster, configure the env vars - and deploy on K8s—or spin up an expensive large VM with no easy VSCode access. Or worse, slowly lose your sanity wrestling with SageMaker functions. We should be able to keep local development seamless _and_ leverage K8s cost-efficiency.
-
-We need to make it easy to schedule Python functions on K8s. Inspired by [Modal](https://modal.com) and Airflow’s [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html#kubernetespodoperator) ,  I built a small package over the week: [`kuberun`](https://github.com/astronautas/kuberun), a decorator that runs Python functions on cluster as if they were local functions.
-## Meet @kuberun
-
-You can simply decorate your function with `@kuberun`, and it will execute on a Kubernetes cluster — passing in the arguments and retrieving the result all behind the scenes:
+Meet [kuberun](https://github.com/astronautas/kuberun).  
+Just decorate your function with `@kuberun` and it will run on a Kubernetes cluster as if it were local.  It quietly handles the Docker build, push, deployment, and wiring — you just write Python:
 
 ```python
 @kuberun(requirements=["torch", "transformers", "pillow"], cpu=32, mem="64Gi")
@@ -85,7 +61,9 @@ def you_func(arg):
 
 Under the hood, it builds a rather standard templated Docker image and generates a just enough Kubernetes Pod spec. The image is pushed to the configured registry, and the spec is applied to the cluster (within a default namespace, configurable though). Arguments and results are pickled — like in Ray or Python’s `multiprocessing`— and exchanged through a shared volume with a sidecar container.
 
-Builds are very slow, and I haven’t figured out support for annotations or environment variables yet (without manual spec writing, which defeats the purpose). Still, the concept gives me energy, so give it a try—and share your feedback via an [issue](https://github.com/astronautas/run_on_k8s/issues)! 
+Builds are very slow, and I haven’t figured out annotations, secrets, environment variables yet (without manual spec writing, which defeats the purpose). Still, the concept gives me energy, so give it a try—and share your feedback via an [issue](https://github.com/astronautas/run_on_k8s/issues)! 
+
+Happy experimentation!
 
 <hr>
 
