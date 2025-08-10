@@ -2,9 +2,9 @@
 layout: post
 title: Run Python functions on K8s
 ---
-I love Kubernetes — for production, it’s rock-solid. 
+I love Kubernetes — for production, it’s rock-solid. But throw me a notebook that needs 0.5 TB of RAM and a GPU, and suddenly K8s feels like a chore. 
 
-But throw me a notebook that needs 0.5 TB of RAM and a GPU, and suddenly K8s feels like a chore. Here’s what that usually means:
+Here’s what that usually means:
 
 1. Write a Dockerfile.
 2. Build the image.
@@ -51,6 +51,8 @@ def image_contents(image_bytes):
 
 caption = image_contents(image_bytes)["description"]
 ```
+
+As soon as the function returns, the pod and any related resources get immediately cleaned-up.
 
 Zooming in:
 ```python
