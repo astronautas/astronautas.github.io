@@ -8,7 +8,7 @@ On the surface, it might not seem exciting. But here's why it is:
 
 **"I can just use multiprocessing.”** Yes, but it comes at a cost — slow inter-process communication. Every argument must be pickled for message passing; objects can be slow to pickle, and some aren’t picklable at all. You need to minimize sync points and be selective about the data exchanged between processes.
 
-**"We already have C and Rust extensions.”** Like C NumPy, obviously use one if you can. But would you ever write one yourself just to parallelise? Doubt.
+**"We already have C and Rust extensions.”** Like C NumPy, obviously use one if you can. But would you ever write one yourself just to parallelise?
 
 **"We have async I/O.”** Useful only if you're I/O bound i.e. tons of external calls - [I’ve written about that before](https://valatka.dev/2024/12/28/async-io-is-not-enough.html).
 
