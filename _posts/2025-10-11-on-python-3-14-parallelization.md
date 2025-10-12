@@ -14,7 +14,7 @@ Not everyone might share my enthusiasm - but here's why it matters:
 
 **"I can scale horizontally”**. Sure — but if you care about minimizing single-request latency, horizontal scaling only increases throughput. The time to process an individual request remains the same as long as the machine itself is unchanged, we merely add additional machines to serve more requests.
 
-So, in theory, we have absolutely `None` ergonomic means for parallelisation in Python. Starting with 3.14, no-GIL aims to change that.
+So, in theory, we have absolutely `None` ergonomic means for parallelisation in Python. 1Starting with 3.14, no-GIL aims to change that.
 
 Here are a few practical use cases where I’ll immediately start exploring no-GIL:
 
@@ -22,7 +22,7 @@ Here are a few practical use cases where I’ll immediately start exploring no-G
 
 **Existing async I/O apps**. I suspect many async I/O apps also do decent amount CPU work that can’t currently be parallelised due to the GIL. I’m already excited to benchmark existing implementations — with [parallel event loops on the way](https://labs.quansight.org/blog/scaling-asyncio-on-free-threaded-python), we might see latencies drop!
 
-I think neither **data pipelines** nor **CLI tools** will benefit from no-GIL. For former, we already offload bulk of CPU work to specialised SQL / DF engines as Polars, DuckDB, PySpark. For latter, most CLI apps are glue code.
+I don't think **data pipelines** will benefit from no-GIL though. Most don't have latency requirements (rather throughput) and we already offload bulk of CPU work to specialised SQL / DF engines as Polars, DuckDB, PySpark (you are not going to be rewriting them soon).
 
 Hopefully, this convinces you to try free threading / no-GIL. [Just see the benchmarks](https://blog.miguelgrinberg.com/post/python-3-14-is-here-how-fast-is-it). I am excited myself. Especially with `uv`, it's as a easy as:
 
