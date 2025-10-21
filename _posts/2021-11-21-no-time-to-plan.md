@@ -1,3 +1,12 @@
+---
+layout: post
+title: No Time to Plan
+---
+
+Reflecting on the art of acing without a thought-out plan.
+
+<!--more-->
+
 The other day I had a chat with a local Karate dojo owner. I am not exactly sure how it all began, but we drifted towards discussing my sensei. He is a busy bee.
 
 The sensei is always on the run, having many activities alongside being the master of the dojo. He delivers leadership seminars for businesses. He is also a referee, being often away abroad for competitions. He sees an opportunity, and he seizes it. It comes at a cost. Often sensei does everything at the last minute. 

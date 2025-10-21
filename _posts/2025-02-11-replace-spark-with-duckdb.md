@@ -3,6 +3,10 @@ layout: post
 title: Should we replace Spark with DuckDB?
 ---
 
+As we'll see, only for some queries (but we can use ML to predict for which ones!).
+
+<!--more-->
+
 I was attending a DuckDB meetup in Leuven, where a presenter was detailing how they replaced Spark with DuckDB to cut costs, when rather abruptly, someone in the audience asked, “How do I know if I should really use DuckDB now, me being not a data engineer? What if my query is heavier than expected? What if my data fluctuates and just sometimes goes beyond a single machine?”. The presenter admitted that you set up the architecture once, do your best benchmarking, and hope for the data dynamics to stay the same.
 
 I was intrigued, but not really convinced, yet.

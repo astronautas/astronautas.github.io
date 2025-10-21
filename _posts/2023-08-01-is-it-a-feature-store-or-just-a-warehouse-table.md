@@ -2,6 +2,11 @@
 layout: post
 title: A Feature Store, or Just a Warehouse Table?
 ---
+
+Is a feature store really necessary when you already have a SQL analytical database?
+
+<!--more-->
+
 Recently a data platform vendor introduced us to their latest offering: a feature store module for machine learning projects. They highlighted the usual selling points, like reducing train-serve skew, feature backfilling, and enhancing feature documentation. However, one of our experienced senior data engineers remained unconvinced. The question on their mind was straightforward: "Is a feature store truly necessary when we already have a fully operational data platform?". Indeed, there might be a case that most of the aforementioned feature store offerings can be solved with a modern data platform, reducing duplicate efforts and costs.
 
 ## A table is all you need...

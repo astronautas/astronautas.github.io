@@ -2,7 +2,12 @@
 layout: post
 title: Python 3.14 will change the way you parallelise code
 ---
-In my mind, free threading (no-GIL) is the main feature of [Python 3.14](https://www.python.org/downloads/release/python-3140/), setting it apart from its predecessors. We can process multiple tasks at the same time (so, parallelise) in Python with pure threads.
+
+Free-threading in Python is finally here. Here’s why it matters and how I plan to use it.
+
+<!--more-->
+
+Free threading (no-GIL) is the main feature of [Python 3.14](https://www.python.org/downloads/release/python-3140/), setting it apart from its predecessors. We can process multiple tasks at the same time (so, parallelise) in Python with pure threads. [Just see the benchmarks](https://blog.miguelgrinberg.com/post/python-3-14-is-here-how-fast-is-it) and [here](https://valatka.dev/2024/12/28/async-io-is-not-enough.html).
 
 Not everyone might share my enthusiasm - but here's why it matters:
 
@@ -24,7 +29,7 @@ Here are a few practical use cases where I’ll immediately start exploring no-G
 
 I don't think **data pipelines** will benefit from no-GIL though. Most don't have latency requirements (rather throughput) and we already offload bulk of CPU work to specialised SQL / DF engines as Polars, DuckDB, PySpark (you are not going to be rewriting them soon).
 
-Hopefully, this convinces you to try free threading / no-GIL. [Just see the benchmarks](https://blog.miguelgrinberg.com/post/python-3-14-is-here-how-fast-is-it). I am excited myself. Especially with `uv`, it's as a easy as:
+Hopefully, this convinces you to try free threading / no-GIL. I am excited myself. Especially with `uv`, it's as a easy as:
 
 ```bash
 uv run --python=3.14t myscript.py

@@ -2,6 +2,11 @@
 layout: post
 title: Async I/O Is Not Enough
 ---
+
+Gonna run some benchmarks on CPU-heavy workloads to illustrate why achieving true parallelism in Python is so hard, why async I/O alone has little to offer there, and how No-GIL changes the game - or just using Go instead.
+
+<!--more-->
+
 For the past few months, I’ve been exploring Go. Having done quite a bit of grueling work shaving off milliseconds from Python web apps, I’ve found Go to be incredible. You can schedule dirt cheap concurrent operations — simply by adding `go` in front of a function call — and achieve true parallelism across cores.
 
 Python's `asyncio` tasks are also dirt cheap, which is especially useful for spawning tons of I/O operations - like database calls or web requests. However, when the objective is to make single-request latency as low as possible (think scaling user-facing algorithms under APIs), coupled with an increasing amount of Python processing code (an application turning CPU-bound), this might become an issue - unlike for Go, though that will not be my main point.

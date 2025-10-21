@@ -3,6 +3,10 @@ layout: post
 title: Uv has a killer feature you should know about
 ---
 
+`uv run` - install, activate, and run in one command...
+
+<!--more-->
+
 In my view, neither performance nor trying to be Python-aligned is what sets [uv](https://github.com/astral-sh/uv) apart. Don’t get me wrong — try switching from uv to Poetry, and you’ll quickly notice how sluggish it (poetry) feels. uv goes extra miles to adhere to PEPs, and IMHO it's the go-to package manager for Python these days. But these aren’t the features that surprised me most.
 
 There’s one small feature I initially overlooked that truly makes uv intriguing:

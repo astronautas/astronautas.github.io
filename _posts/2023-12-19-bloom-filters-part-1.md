@@ -2,6 +2,11 @@
 layout: post
 title: Let's build a Bloom filter. Part 1 - A Space-Efficient Hash Set
 ---
+
+Implementing a Bloom filter from scratch (in Rust 🦀) to understand what makes them tick. Apparently, they're very similar to hash maps.
+
+<!--more-->
+
 I have always been intrigued by Bloom filters. They are very similar to hash sets but somehow consume much less memory. Sometimes, they can yield false positives, creating a peculiar tradeoff.
 
 Let's explore what makes Bloom filters tick, starting with a high-level comparison to a hash set. As a reminder, a hash set stores unique elements without any associated values. This allows only to check whether an item has been inserted within it or not. Similarly, Bloom filters are used solely for membership queries.

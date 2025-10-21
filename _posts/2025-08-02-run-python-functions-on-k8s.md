@@ -2,6 +2,11 @@
 layout: post
 title: Run Python functions on K8s
 ---
+
+Inventing once more. This time, a decorator to run Python functions on K8s, straight from notebooks!
+
+<!--more-->
+
 I love Kubernetes — for production, it’s rock-solid. But throw me a notebook that needs 0.5 TB of RAM and a GPU, and suddenly K8s feels like a chore. 
 
 Here’s what that usually means:

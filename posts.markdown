@@ -12,14 +12,13 @@ permalink: /posts/
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
+        <h3 class="post-title">
           <a class="post-link" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>
         </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
+
+      {{ post.excerpt | strip_html | strip_newlines | strip }}
       </li>
       {%- endfor -%}
     </ul>

@@ -1,3 +1,12 @@
+---
+layout: post
+title: Walrus operator
+---
+
+Exploring the new Walrus operator in Python. Neat syntax sugar!
+
+<!--more-->
+
 The Walrus operator, formally the assignment expressions, has been for some time around now in Python (since 3.8). I've grown fond of it :).
 
 You can add more clarity to the code with it:
