@@ -18,6 +18,6 @@ Later, I found myself procrastinating again. I'd been postponing an idea to give
 
 Makes me think. In the first situation, I had no <u>vision</u> of the end result—I didn't know what makes a good landing page. I could barely give the agent useful feedback. It saved some typing time but produced no good results. In the second, I had a <u>clear end state</u> in mind, so a bit of guiding brought us to a satisfactory end result, in no time. Both tasks' scope was slightly different though, but I believe the key difference was having a clear end state.
 
-It seems I can finally ship <u>well-scoped</u> features with obvious (so <u>boring</u>) implementations. Previously, I would put them aside for undetermined periods. Exciting times ahead - until agents become higher-goal-directed and start asking six figures and equity for side projects.
+I can finally un-procrastinate side projects. They offer no monetary incentive (unlike jobs) so the process is painful - tons of <u>well-scoped</u> features with obvious (so <u>boring</u>) implementations that I would always put aside. Exciting times ahead!
 
 <small><sup>1</sup> In both cases, I used Claude Sonnet 3.5 and 4, via GitHub's Copilot VSCode extension. The latter experiment obviously benefited from a more powerful model, but I doubt it was a significant factor.</small>
