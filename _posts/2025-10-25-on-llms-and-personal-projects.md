@@ -1,6 +1,6 @@
 ---
 layout: post
-title: LLMs are the missing link to shipping personal projects
+title: LLMs are the missing link to shipping side projects
 ---
 I've been procrastinating on shipping a small UI improvement to my blog, and an LLM made it happen.
 
