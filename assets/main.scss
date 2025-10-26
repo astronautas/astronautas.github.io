@@ -1,0 +1,39 @@
+---
+---
+
+@import "minima";
+
+/* Footnotes styling */
+.footnotes {
+  font-size: 0.875em; /* 14px if base is 16px */
+  color: #666;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #e8e8e8;
+}
+
+.footnotes ol {
+  padding-left: 1.5em;
+}
+
+.footnotes li {
+  margin-bottom: 0.5em;
+}
+
+/* Footnote references (superscript numbers) */
+sup {
+  font-size: 0.75em; /* Smaller than body text */
+  line-height: 0;
+  vertical-align: super;
+}
+
+/* Footnote backlinks */
+.footnotes .reversefootnote {
+  font-size: 0.875em;
+}
+
+/* Small tag for manual footnotes */
+small {
+  font-size: 0.875em;
+  color: #666;
+}

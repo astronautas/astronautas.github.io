@@ -169,8 +169,4 @@ And, as always, never forget to benchmark.
 
 [Source on Github](https://github.com/astronautas/async-io-is-not-enough)
 
-<br />
-<hr>
-<br />
-
-<sup>1</sup> Quite by accident, I noticed that I throttled Go implementation for IO+CPU experiments. I ensured Go spends exactly the same amount of time on CPU operations as Python, which resulted in Go doing many more iterations than Python. Multiple times I concluded Go is just a bit faster than Python, whereas it actually is astronomically faster. But that does not change my main point that without GIL, no matter however you slice your CPU-bound work into async blocks, you will not see any gains. Will adjust the post.
+<small><sup>1</sup> Quite by accident, I noticed that I throttled Go implementation for IO+CPU experiments. I ensured Go spends exactly the same amount of time on CPU operations as Python, which resulted in Go doing many more iterations than Python. Multiple times I concluded Go is just a bit faster than Python, whereas it actually is astronomically faster. But that does not change my main point that without GIL, no matter however you slice your CPU-bound work into async blocks, you will not see any gains. Will adjust the post.</small>

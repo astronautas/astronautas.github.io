@@ -74,4 +74,4 @@ Happy experimentation!
 
 <hr>
 
-<sup>1</sup>  I sort of accidentally found out that the name `kuberun` had been already used for some fancy [ssh to container tool](https://github.com/ContainerSSH/kuberun). It seems to be deprecated. Fair if I borrow the name. It's a pet project after all...
+<small><sup>1</sup>  I sort of accidentally found out that the name `kuberun` had been already used for some fancy [ssh to container tool](https://github.com/ContainerSSH/kuberun). It seems to be deprecated. Fair if I borrow the name. It's a pet project after all...</small>
