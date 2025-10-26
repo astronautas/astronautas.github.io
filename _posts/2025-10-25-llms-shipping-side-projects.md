@@ -14,7 +14,7 @@ Later, I found myself procrastinating again. I'd been delaying an idea to give a
   <img src="/assets/image-old.png" alt="Old design" style="max-width: 45%; height: auto;" />
   <img src="/assets/image-new.png" alt="New design" style="max-width: 45%; height: auto;" />
 </div>
-<p style="text-align: center; font-style: italic; margin-top: -10px;">Sonnet adjusted the blog’s CSS. And yes, Sonnet also coded the CSS for this comparison.</p>
+<p style="text-align: center; font-style: italic; margin-top: -10px;">Sonnet adjusted the UI just right. Curious how I made this horizontal comparison above? Also Sonnet!</p>
 
 Makes me think. In the first situation, I had no <u>vision</u> of the end result — I didn't know what makes a good landing page. I could barely give the agent useful feedback. It saved some typing time but produced no good results. In the second, I had a <u>clear end state</u> in mind, so a bit of guiding brought us to a satisfactory end result, in no time. Both tasks' scope was slightly different though, but I believe the key difference was having a clear end state.
 
