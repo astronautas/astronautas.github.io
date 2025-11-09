@@ -76,7 +76,7 @@ permalink: /about/
         </p>
 
         <p>
-        Stay tuned for my next stop — news coming very soon!
+        I currently build ML infrastructure at <a href="https://cast.ai">cast.ai</a>. We build models to predict how many resources your app will use (vertical and horizontal scaling), spot interruption prediction (don't let 'em clouds kill your apps). Crazy stuff, k8s, and tons of data! Back in my hometown Vilnius, Lithuania.
         </p>
     </div>
 </div>
