@@ -15,4 +15,4 @@ I choose battle-tested implementations. I let time decide which implementations 
 
 I choose mature technologies. Agents can implement anything. The value lies in technologies that actually solve real problems — that have found product-market fit. Only time can tell this.
 
-The next time you want to add that dependency with 5 stars, how about you let your agent vibe-copy it instead?
+The next time you want to add that 5-star dependency, how about you let your agent vibe-copy it instead?
