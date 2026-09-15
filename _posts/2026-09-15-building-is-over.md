@@ -13,6 +13,6 @@ The other day, I was thinking about how I pick my stack.
 
 I choose battle-tested implementations. I let time decide which implementations win and which perish. Those that survive must have gone through the brutal cycles of reality: functional issues, security issues, performance issues. Even the most tasteless software, when exposed to enough user feedback, eventually ends up in a slick state (or dies).
 
-I choose mature technologies. Agents can implement anything. The value lies in technologies that actually solve real problems — that have found product-market fit.
+I choose mature technologies. Agents can implement anything. The value lies in technologies that actually solve real problems — that have found product-market fit. Only time can tell this.
 
 The next time you want to add that dependency with 5 stars, how about you let your agent vibe-copy it instead?
