@@ -3,6 +3,10 @@ layout: post
 title: Battle-tested - the new north star for quality
 ---
 
+POCs mean nothing to me anymore.
+
+<!--more-->
+
 The other day, I was thinking about how I pick my stack.
 
 “Built” means nothing to me anymore. Agents can produce the most sophisticated code — well-structured, true rocket science. They can build almost anything without breaking a sweat.
